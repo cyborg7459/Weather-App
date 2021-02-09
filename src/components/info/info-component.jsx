@@ -65,7 +65,9 @@ const InfoBar = ({...props}) => {
     return (
         <div className="infobar-container">
             <div className="top-section">
-                <button>Search for places</button>
+                <button onClick={() => {
+                    props.showSidebar()
+                }}>Search for places</button>
                 <i onClick={() => (
                     props.fetchHomeData()
                 )} className="fas fa-home"></i>

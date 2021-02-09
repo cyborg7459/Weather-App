@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import Loader from './components/loader/loader.component';
 import InfoBar from './components/info/info-component';
 import DetailsSection from './components/details/details-component';
+import Sidebar from './components/sidebar/sidebar-component';
 
 class App extends React.Component {
   
@@ -14,7 +15,8 @@ class App extends React.Component {
     currentCity : null,
     show404 : false,
     tempUnit : 'C',
-    activeScale : 1
+    activeScale : 1,
+    isSidebarVisible : false
   }
 
   componentDidMount() {
@@ -148,6 +150,18 @@ class App extends React.Component {
     });
   }
 
+  showSidebar = () => {
+    this.setState({
+      isSidebarVisible : true
+    })
+  }
+
+  hideSidebar = () => { 
+    this.setState({
+      isSidebarVisible : false
+    })
+  }
+
   render() {
     if(this.state.isLoading) {
       return (
@@ -158,10 +172,15 @@ class App extends React.Component {
     } else {
       return (
         <div className="App">
+          <Sidebar 
+            isSidebarVisible={this.state.isSidebarVisible}
+            hideSidebar={this.hideSidebar}
+          />
           <Row className='main'>
             <Col className = 'px-0' lg={4} xl={3}>
               <InfoBar 
-                fetchHomeData = {this.fetchHomeData}
+                showSidebar={this.showSidebar}
+                fetchHomeData={this.fetchHomeData}
                 unit={this.state.tempUnit} 
                 city={this.state.currentCity}
               />
