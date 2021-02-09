@@ -66,7 +66,9 @@ const InfoBar = ({...props}) => {
         <div className="infobar-container">
             <div className="top-section">
                 <button>Search for places</button>
-                <i className="fas fa-home"></i>
+                <i onClick={() => (
+                    props.fetchHomeData()
+                )} className="fas fa-home"></i>
             </div>
             <div className="image-region">
                 <img className ='bg-image' src={background} alt="shower"/>

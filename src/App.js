@@ -53,7 +53,14 @@ class App extends React.Component {
     })
   }
 
+  fetchHomeData = () => {
+    this.fetchData(this.state.homeID);
+  }
+
   fetchData = (id) => {
+    this.setState({
+      isLoading : true
+    })
     axios.get(`https://obscure-mesa-98003.herokuapp.com/https://www.metaweather.com/api/location/${id}/`)
     .then((res) => {
       this.setState({
@@ -154,6 +161,7 @@ class App extends React.Component {
           <Row className='main'>
             <Col className = 'px-0' lg={4} xl={3}>
               <InfoBar 
+                fetchHomeData = {this.fetchHomeData}
                 unit={this.state.tempUnit} 
                 city={this.state.currentCity}
               />
