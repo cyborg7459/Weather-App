@@ -58,8 +58,8 @@ const WeatherCard = ({...props}) => {
             <h1 className='mb-0 size12'>Tomorrow</h1>
             <img src={images[details.weather_state_name]} alt="img"/>
             <div className="temperatures">
-                <span>{details.min_temp.toFixed(1)} C</span>
-                <span>{details.max_temp.toFixed(1)} C</span>
+                <span>{details.min_temp.toFixed(1)} {props.unit}</span>
+                <span>{details.max_temp.toFixed(1)} {props.unit}</span>
             </div>
         </div>
     )

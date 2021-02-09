@@ -16,7 +16,7 @@ const DetailsSection = ({...props}) => {
                         next5days.map((day, idx) => {
                             return (
                                 <Col className='px-0' sm={6} lg={4} xl={2}>
-                                    <WeatherCard details = {day} key = {idx}  />
+                                    <WeatherCard details= {day} key={idx} unit={props.unit} />
                                 </Col>
                             )
                         })

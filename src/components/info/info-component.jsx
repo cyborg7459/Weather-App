@@ -73,7 +73,7 @@ const InfoBar = ({...props}) => {
                 <img className = 'weather-image'  src={weatherImg} alt=""/>
             </div>
             <div className="info-region">
-                <h1 className='size50 mb-4'>{temp} C</h1>
+                <h1 className='size50 mb-4'>{temp} {props.unit}</h1>
                 <h1>{details.weather_state_name}</h1>
             </div>
             <div className="location-region">

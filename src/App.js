@@ -12,7 +12,8 @@ class App extends React.Component {
     isLoading : true,
     homeID : 0,
     currentCity : null,
-    show404 : false
+    show404 : false,
+    tempUnit : 'C'
   }
 
   componentDidMount() {
@@ -76,10 +77,10 @@ class App extends React.Component {
         <div className="App">
           <Row className='main'>
             <Col className = 'px-0' lg={4} xl={3}>
-              <InfoBar city = {this.state.currentCity}/>
+              <InfoBar unit={this.state.tempUnit} city = {this.state.currentCity}/>
             </Col>
             <Col className = 'px-0' lg={8} xl={9}>
-              <DetailsSection city = {this.state.currentCity} />
+              <DetailsSection unit={this.state.tempUnit} city = {this.state.currentCity} />
             </Col>
           </Row>
         </div>
