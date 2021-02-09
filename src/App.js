@@ -44,7 +44,11 @@ class App extends React.Component {
   } 
 
   geoError = () => {
-    alert('Geolocation failed');
+    this.setState({
+      homeID: 28743736
+    }, () => {
+      this.fetchData(this.state.homeID);
+    })
   }
 
   fetchData = (id) => {
@@ -64,7 +68,7 @@ class App extends React.Component {
         }
         <Row className='main'>
           <Col className = 'px-0' lg={4} xl={3}>
-            <InfoBar />
+            <InfoBar city = {this.state.currentCity}/>
           </Col>
           <Col className = 'px-0' lg={8} xl={9}>
             <DetailsSection />
