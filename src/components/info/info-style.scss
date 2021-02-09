@@ -1,0 +1,81 @@
+.infobar-container {
+    background-color: #1E213A;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+
+    .top-section {
+        width: 100%;
+        padding: 30px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+
+        button {
+            background-color: #6E707A;
+            color: white;
+            border: none;
+            padding: 12px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        .fas {
+            background-color: #6E707A;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all ease-in-out 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .image-region {
+        height: 400px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .bg-image {
+            transform: translateX(-160px);
+            position: absolute;
+            opacity: 0.2;
+            top: 0;
+            left: 0;
+        }
+
+        .weather-image {
+            max-width: 180px;
+        }
+    }
+
+    .info-region {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #E7E7EB;
+    }
+
+    .location-region {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #A09FB1;
+        margin-top: 90px;
+    }
+}
