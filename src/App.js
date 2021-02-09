@@ -9,7 +9,7 @@ import DetailsSection from './components/details/details-component';
 class App extends React.Component {
   
   state = {
-    isLoading : false,
+    isLoading : true,
     homeID : 0,
     currentCity : null,
     show404 : false
@@ -56,26 +56,35 @@ class App extends React.Component {
     .then((res) => {
       this.setState({
         currentCity : res.data
+      }, () => {
+        this.setState({
+          isLoading : false
+        })
       });
     })
   }
 
   render() {
-    return (
-      <div className="App">
-        {
-          this.state.isLoading ? <Loader text='Fetching weather details' /> : null
-        }
-        <Row className='main'>
-          <Col className = 'px-0' lg={4} xl={3}>
-            <InfoBar city = {this.state.currentCity}/>
-          </Col>
-          <Col className = 'px-0' lg={8} xl={9}>
-            <DetailsSection />
-          </Col>
-        </Row>
-      </div>
-    );
+    if(this.state.isLoading) {
+      return (
+        <div className="App">
+          <Loader text='Fetching weather details' />
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <Row className='main'>
+            <Col className = 'px-0' lg={4} xl={3}>
+              <InfoBar city = {this.state.currentCity}/>
+            </Col>
+            <Col className = 'px-0' lg={8} xl={9}>
+              <DetailsSection city = {this.state.currentCity} />
+            </Col>
+          </Row>
+        </div>
+      )
+    }
   }
 }
 
