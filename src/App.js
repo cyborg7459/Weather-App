@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 
 import Loader from './components/loader/loader.component';
 import InfoBar from './components/info/info-component';
+import DetailsSection from './components/details/details-component';
 
 class App extends React.Component {
   
@@ -62,8 +63,11 @@ class App extends React.Component {
           this.state.isLoading ? <Loader text='Fetching weather details' /> : null
         }
         <Row className='main'>
-          <Col lg={4} xl={3}>
+          <Col className = 'px-0' lg={4} xl={3}>
             <InfoBar />
+          </Col>
+          <Col className = 'px-0' lg={8} xl={9}>
+            <DetailsSection />
           </Col>
         </Row>
       </div>

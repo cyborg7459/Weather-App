@@ -1,0 +1,20 @@
+.weather-card {
+    background-color: #1E213A;
+    padding: 20px;
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 80px;
+    }
+
+    .temperatures {
+        width: 100%;
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-between;
+    }
+}

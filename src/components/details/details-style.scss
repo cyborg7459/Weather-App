@@ -1,0 +1,54 @@
+.details-container {
+    padding: 60px 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .details-inner {
+        width: 70%;
+
+        .weather-cards {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    
+        h1 {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .highlights-row {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .highlight {
+        background-color: #1E213A;
+        box-sizing: border-box;
+        padding: 20px;
+        margin: 30px 0px;
+
+        .progress {
+            margin: 25px 0px;
+            height: 10px;
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            background-color: #FFEC65;
+        }
+    }
+    
+    .footer {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom : 10px;
+    }
+}
