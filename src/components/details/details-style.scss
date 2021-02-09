@@ -8,6 +8,39 @@
     align-items: center;
     position: relative;
 
+    @media(max-width : 1600px) {
+        padding: 100px 0px;
+    }
+
+    .temperature-scales {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        display: flex;
+
+        .temp-scale {
+            background-color: #1E213A;
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+
+            &.active {
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+
     .details-inner {
         width: 70%;
 

@@ -13,7 +13,8 @@ class App extends React.Component {
     homeID : 0,
     currentCity : null,
     show404 : false,
-    tempUnit : 'C'
+    tempUnit : 'C',
+    activeScale : 1
   }
 
   componentDidMount() {
@@ -65,6 +66,81 @@ class App extends React.Component {
     })
   }
 
+  convertToKelvin = () => {
+    if(this.state.activeScale === 2) return;
+    if(this.state.activeScale === 3)
+      this.convertToCelcius();
+    let city = this.state.currentCity;
+    city.consolidated_weather = city.consolidated_weather.map(day => {
+      return {
+        ...day,
+        max_temp : day.max_temp+273,
+        min_temp : day.min_temp+273,
+        the_temp : day.the_temp +273
+      }
+    })
+    this.setState({
+      currentCity : city,
+      activeScale : 2,
+      tempUnit : 'K'
+    });
+  }
+
+  convertToCelcius = () => {
+    if(this.state.activeScale === 1) return;
+    let city = this.state.currentCity;
+    if(this.state.activeScale === 2) {
+      city.consolidated_weather = city.consolidated_weather.map(day => {
+        return {
+          ...day,
+          max_temp : day.max_temp-273,
+          min_temp : day.min_temp-273,
+          the_temp : day.the_temp-273
+        }
+      })
+      this.setState({
+        currentCity : city,
+        activeScale : 1,
+        tempUnit : 'C'
+      });
+    }
+    else if(this.state.activeScale === 3) {
+      city.consolidated_weather = city.consolidated_weather.map(day => {
+        return {
+          ...day,
+          max_temp : (day.max_temp-32)*5/9,
+          min_temp : (day.min_temp-32)*5/9,
+          the_temp : (day.the_temp-32)*5/9
+        }
+      })
+      this.setState({
+        currentCity : city,
+        activeScale : 1,
+        tempUnit : 'C'
+      });
+    }
+  }
+
+  convertToFahrenheit = () => {
+    if(this.state.activeScale === 3) return;
+    if(this.state.activeScale === 2)
+      this.convertToCelcius();
+    let city = this.state.currentCity;
+    city.consolidated_weather = city.consolidated_weather.map(day => {
+      return {
+        ...day,
+        max_temp : (day.max_temp*9/5)+32,
+        min_temp : (day.min_temp*9/5)+32,
+        the_temp : (day.the_temp*9/5)+32
+      }
+    })
+    this.setState({
+      currentCity : city,
+      activeScale : 3,
+      tempUnit : 'F'
+    });
+  }
+
   render() {
     if(this.state.isLoading) {
       return (
@@ -77,10 +153,20 @@ class App extends React.Component {
         <div className="App">
           <Row className='main'>
             <Col className = 'px-0' lg={4} xl={3}>
-              <InfoBar unit={this.state.tempUnit} city = {this.state.currentCity}/>
+              <InfoBar 
+                unit={this.state.tempUnit} 
+                city={this.state.currentCity}
+              />
             </Col>
             <Col className = 'px-0' lg={8} xl={9}>
-              <DetailsSection unit={this.state.tempUnit} city = {this.state.currentCity} />
+              <DetailsSection 
+                convertToKelvin = {this.convertToKelvin}
+                convertToCelcius = {this.convertToCelcius}
+                convertToFahrenheit = {this.convertToFahrenheit}
+                activeScale={this.state.activeScale} 
+                unit={this.state.tempUnit} 
+                city={this.state.currentCity} 
+              />
             </Col>
           </Row>
         </div>

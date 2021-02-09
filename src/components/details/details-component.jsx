@@ -10,13 +10,41 @@ const DetailsSection = ({...props}) => {
 
     return (
         <div className="details-container">
+            <div className="temperature-scales">
+                <div 
+                    className={`temp-scale ` + (props.activeScale===1 ? ` active` : ` `)}
+                    onClick={() => {
+                        props.convertToCelcius();
+                    }}
+                >
+                    C
+                </div>
+                <div 
+                    className={`temp-scale ` + (props.activeScale===2 ? ` active` : ` `)} 
+                    onClick={() => {
+                        props.convertToKelvin();
+                    }}
+                >
+                    K
+                </div>
+                <div 
+                    className={`temp-scale ` + (props.activeScale===3 ? ` active` : ` `)}
+                    onClick = {() => {
+                        props.convertToFahrenheit();
+                    }}
+                >
+                    F
+                </div>
+            </div>
             <div className="details-inner">
                 <Row className='weather-cards'>
                     {
                         next5days.map((day, idx) => {
                             return (
                                 <Col className='px-0' sm={6} lg={4} xl={2}>
-                                    <WeatherCard details= {day} key={idx} unit={props.unit} />
+                                    <WeatherCard details= {day} 
+                                    key={idx} 
+                                    unit={props.unit} />
                                 </Col>
                             )
                         })
