@@ -6,6 +6,7 @@ import Loader from './components/loader/loader.component';
 import InfoBar from './components/info/info-component';
 import DetailsSection from './components/details/details-component';
 import Sidebar from './components/sidebar/sidebar-component';
+import Error404 from './components/404-error/404-error-component';
 
 class App extends React.Component {
   
@@ -13,7 +14,7 @@ class App extends React.Component {
     isLoading : true,
     homeID : 0,
     currentCity : null,
-    show404 : false,
+    show404 : true,
     tempUnit : 'C',
     activeScale : 1,
     isSidebarVisible : false
@@ -69,9 +70,25 @@ class App extends React.Component {
         currentCity : res.data
       }, () => {
         this.setState({
-          isLoading : false
+          isLoading : false,
+          isSidebarVisible : false
         })
       });
+    })
+  }
+
+  searchByLocation = (location) => {
+    axios.get('https://obscure-mesa-98003.herokuapp.com/https://www.metaweather.com/api/location/search/', {
+      params : {
+        query : location
+      }
+    })
+    .then(res => {
+      if(res.data.length === 0)
+        alert("404");
+      else {
+        this.fetchData(res.data[0].woeid);
+      }
     })
   }
 
@@ -162,8 +179,21 @@ class App extends React.Component {
     })
   }
 
+  remove404 = () => {
+    this.setState({
+      show404 : false
+    })
+  }
+
   render() {
-    if(this.state.isLoading) {
+    if(this.state.show404) {
+      return (
+        <div className='App'>
+          <Error404 remove404={this.remove404} />
+        </div>
+      )
+    }
+    else if(this.state.isLoading) {
       return (
         <div className="App">
           <Loader text='Fetching weather details' />
@@ -173,6 +203,7 @@ class App extends React.Component {
       return (
         <div className="App">
           <Sidebar 
+            searchByLocation={this.searchByLocation}
             isSidebarVisible={this.state.isSidebarVisible}
             hideSidebar={this.hideSidebar}
           />

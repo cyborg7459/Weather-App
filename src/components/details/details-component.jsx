@@ -41,9 +41,8 @@ const DetailsSection = ({...props}) => {
                     {
                         next5days.map((day, idx) => {
                             return (
-                                <Col className='px-0' sm={6} lg={4} xl={2}>
+                                <Col key={idx} className='px-0' sm={6} lg={4} xl={2}>
                                     <WeatherCard details= {day} 
-                                    key={idx} 
                                     unit={props.unit} />
                                 </Col>
                             )
@@ -52,20 +51,20 @@ const DetailsSection = ({...props}) => {
                 </Row>
                 <h1 className='mt-5 text-left size17'>Today's Highlights</h1>
                 <Row className='highlights-row'>
-                    <Col className='highlight' md={5}>
+                    <Col key='1' className='highlight' md={5}>
                         <h1 className='size13'>Wind Status</h1>
                         <h1 className='size40'> {details.wind_speed.toFixed(0)} <span className='size25'> mph </span></h1>
                     </Col>
-                    <Col className='highlight' md={5}>
+                    <Col kwy='2' className='highlight' md={5}>
                         <h1 className='mb-0 size13'>Humidity</h1>
                         <h1 className='mb-0 size40'> {details.humidity} <span className='size25'> % </span></h1>
                         <ProgressBar className='progress' now={`${details.humidity}`} />
                     </Col>
-                    <Col className='highlight' md={5}>
+                    <Col kwy='3' className='highlight' md={5}>
                         <h1 className='size13'>Visibility</h1>
                         <h1 className='size40'> {details.visibility.toFixed(2)} <span className='size25'> miles </span></h1>
                     </Col>
-                    <Col className='highlight' md={5}>
+                    <Col key='4' className='highlight' md={5}>
                         <h1 className='size13'>Air pressure</h1>
                         <h1 className='size40'> {details.air_pressure} <span className='size25'> mb </span></h1>
                     </Col>

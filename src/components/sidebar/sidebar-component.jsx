@@ -2,6 +2,15 @@ import React from 'react';
 import './sidebar-style.scss';
 
 class Sidebar extends React.Component {
+
+    search = () => {
+        const location = document.getElementById('location').value;
+        if(location === "")
+            alert('Please enter a location');
+        else 
+            this.props.searchByLocation(location);
+    }
+
     render() {
         return (
             <div className={`sidebar ` + (this.props.isSidebarVisible ? ' visible' : ' ')}>
@@ -11,9 +20,11 @@ class Sidebar extends React.Component {
                     }} className="size20 fas fa-times"></i>
                 </div>
                 <div className="form-region">
-                    <input type="text" placeholder='Enter city name'/>
+                    <input id='location' type="text" placeholder='Enter city name'/>
                     <br/>
-                    <button>Search location</button>
+                    <button onClick={() => {
+                        this.search();
+                    }}>Search location</button>
                 </div>
             </div>
         )
