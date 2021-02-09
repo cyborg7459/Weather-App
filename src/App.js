@@ -14,7 +14,7 @@ class App extends React.Component {
     isLoading : true,
     homeID : 0,
     currentCity : null,
-    show404 : true,
+    show404 : false,
     tempUnit : 'C',
     activeScale : 1,
     isSidebarVisible : false
@@ -78,14 +78,21 @@ class App extends React.Component {
   }
 
   searchByLocation = (location) => {
+    this.setState({
+      isLoading : true
+    })
     axios.get('https://obscure-mesa-98003.herokuapp.com/https://www.metaweather.com/api/location/search/', {
       params : {
         query : location
       }
     })
     .then(res => {
-      if(res.data.length === 0)
-        alert("404");
+      if(res.data.length === 0) {
+        this.setState({
+          show404 : true,
+          isLoading: false
+        })
+      }
       else {
         this.fetchData(res.data[0].woeid);
       }
