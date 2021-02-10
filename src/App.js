@@ -71,7 +71,9 @@ class App extends React.Component {
       }, () => {
         this.setState({
           isLoading : false,
-          isSidebarVisible : false
+          isSidebarVisible : false,
+          tempUnit : 'C',
+          activeScale : 1
         })
       });
     })
