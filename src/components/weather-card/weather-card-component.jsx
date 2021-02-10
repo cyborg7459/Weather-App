@@ -60,7 +60,7 @@ const WeatherCard = ({...props}) => {
     const day = dayMap[card_date.getDay()];
     let date_output;
     if(date === today+1)
-        date_output = 'Tommorrow';
+        date_output = 'Tomorrow';
     else 
         date_output = `${day}, ${date} ${month}`
 
