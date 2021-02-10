@@ -25,37 +25,49 @@ const images = {
 }
 
 const monthMap = {
-    0 : "January",
-    1 : "February",
-    2 : "March",
-    3 : "April",
+    0 : "Jan",
+    1 : "Feb",
+    2 : "Mar",
+    3 : "Apr",
     4 : "May", 
-    5 : "June",
-    6 : "July",
-    7 : "August",
-    8 : "September",
-    9 : "October",
-    10 : "November",
-    11 : "December"
+    5 : "Jun",
+    6 : "Jul",
+    7 : "Aug",
+    8 : "Sept",
+    9 : "Oct",
+    10 : "Nov",
+    11 : "Dec"
 }
 
 const dayMap = {
-    0 : "Sunday",
-    1 : "Monday",
-    2 : "Tuesday",
-    3 : "Wednesday",
-    4 : "Thursday",
-    5 : "Friday",
-    6 : "Saturday"
+    0 : "Sun",
+    1 : "Mon",
+    2 : "Tues",
+    3 : "Wed",
+    4 : "Thurs",
+    5 : "Fri",
+    6 : "Sat"
 }
 
 const WeatherCard = ({...props}) => {
 
     const details = props.details;
+    const cur_date = new Date();
+    const today = cur_date.getDate();
+    const card_date = new Date(details.applicable_date);
+    const date = card_date.getDate();
+    const month = monthMap[card_date.getMonth()];
+    const day = dayMap[card_date.getDay()];
+    let date_output;
+    if(date === today+1)
+        date_output = 'Tommorrow';
+    else 
+        date_output = `${day}, ${date} ${month}`
+    console.log(card_date);
 
     return (
         <div className="weather-card">
-            <h1 className='mb-0 size12'>Tomorrow</h1>
+            <h1 className='mb-0 size12'>{date_output}</h1>
             <img src={images[details.weather_state_name]} alt="img"/>
             <div className="temperatures">
                 <span>{details.min_temp.toFixed(1)} {props.unit}</span>
