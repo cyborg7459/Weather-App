@@ -63,7 +63,6 @@ const WeatherCard = ({...props}) => {
         date_output = 'Tommorrow';
     else 
         date_output = `${day}, ${date} ${month}`
-    console.log(card_date);
 
     return (
         <div className="weather-card">

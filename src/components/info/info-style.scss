@@ -50,6 +50,10 @@
         align-items: center;
         margin-bottom: 20px;
 
+        @media(max-width: 700px) {
+            height: 300px;
+        }
+
         .bg-image {
             transform: translateX(-160px);
             position: absolute;
@@ -60,6 +64,10 @@
 
         .weather-image {
             max-width: 180px;
+
+            @media(max-width: 700px) {
+                max-width: 150px;
+            }
         }
     }
 

@@ -70,7 +70,7 @@ const DetailsSection = ({...props}) => {
                     </Col>
                 </Row>
             </div>
-            <div className="footer text-muted">
+            <div className="footer px-5 text-muted">
                 Designed & Developed by Shreyash Kumar Singh
             </div>
         </div>
